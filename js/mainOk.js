@@ -47,6 +47,7 @@ const colorModeButton = document.querySelector(".boton-modo-pantalla");
 const body = document.querySelector("body");
 const textos = document.querySelector(".containerTextos");
 
+
 let darkMode = localStorage.getItem("dark-mode");
 
 if (darkMode === "activado") {
@@ -88,15 +89,17 @@ function activarDarkMode() {
 const usuarioNombreInput = document.querySelector(".input-nombre");
 const usuarioNombre = usuarioNombreInput.value;
 const textosElement = document.querySelector(".textos");
+const imagenes = document.querySelector(".container-imagenes");
 let usuarioApellido = "";
 let piloto1 = " ";
 let piloto2 = " ";
+
 
 usuarioNombreInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         const usuarioNombre = usuarioNombreInput.value;
-        console.log(usuarioNombre);
+        //console.log(usuarioNombre);
 
 
         textosElement.innerHTML = `
@@ -213,6 +216,7 @@ function mostrarSainzScenario(usuarioNombre, usuarioApellido) {
     let botonSiguiente1 = document.querySelector(".boton-siguiente1")
     botonSiguiente1.addEventListener("click", function () {
         event.preventDefault();
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/sainz.png" alt="imagen de Carlos Sainz sin casco">`;
         textosElement.innerHTML = `<p>${Sainz.nombreEscuderia} es el sueño de todos.</p>
                         <p>Bueno, acomodate, ya estamos casi listos para ponernos en marcha.</p>
                         <p>${piloto1} te saluda a lo lejos y se sube a su monoplaza color ${Sainz.color}.</p>
@@ -225,10 +229,21 @@ function mostrarSainzScenario(usuarioNombre, usuarioApellido) {
         let botonSiguiente2 = document.querySelector(".boton-siguiente2");
         botonSiguiente2.addEventListener("click", function () {
             event.preventDefault();
+            imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/sainz-casco.png" alt="imagen de Carlos Sainz con casco">`
             textosElement.innerHTML = `<p>Te pones los auriculares y lo saludas. Faltan 3 min para que los primeros 18 minutos de la Q3 empiecen.</p>
                             <p>Debes decidir:</p>
-                            <button class = "opcion1">Sacar a ${piloto1}, primero, con pista y aire limpio pero con el asfalto menos engomado.</button>
-                            <button class = "opcion2">Sacar a ${piloto1} despues del minuto 5, con más trafico pero con mayor adherencia.</button>`;
+                            <div class="container">
+                            <div class="btn2">
+                                <span class="opcion1">Sacar a ${piloto1}, primero, con pista y aire limpio pero con el asfalto menos engomado.</span>
+                                <div class="dot2"></div>
+                            </div>
+                        </div>
+                        <div class="container">
+                        <div class="btn2">
+                            <span class="opcion2">Sacar a ${piloto1} despues del minuto 5, con más trafico pero con mayor adherencia.</span>
+                            <div class="dot2"></div>
+                        </div>
+                    </div>`;
             const botonOpcion1 = document.querySelector(".opcion1");
             const botonOpcion2 = document.querySelector(".opcion2");
 
@@ -253,6 +268,7 @@ function mostrarVerstappenScenario(usuarioNombre, usuarioApellido) { //MAX VERST
     let botonSiguiente1 = document.querySelector(".boton-siguiente1")
     botonSiguiente1.addEventListener("click", function () {
         event.preventDefault();
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/verstappen.png" alt="imagen de Max Verstappen sin casco">`
         textosElement.innerHTML = `<p>${Verstappen.nombreEscuderia} es el sueño de todos.</p>
                         <p>Bueno, acomodate, ya estamos casi listos para ponernos en marcha.</p>
                         <p>${piloto1} te saluda a lo lejos y se sube a su monoplaza color ${Verstappen.color}.</p>
@@ -265,10 +281,21 @@ function mostrarVerstappenScenario(usuarioNombre, usuarioApellido) { //MAX VERST
         let botonSiguiente2 = document.querySelector(".boton-siguiente2");
         botonSiguiente2.addEventListener("click", function () {
             event.preventDefault();
+            imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/verstappen-casco.png" alt="imagen de Max Verstappen con casco">`
             textosElement.innerHTML = `<p>Te pones los auriculares y lo saludas. Faltan 3 min para que los primeros 18 minutos de la Q3 empiecen.</p>
                             <p>Debes decidir:</p>
-                            <button class = "opcion1">Sacar a ${piloto1}, primero, con pista y aire limpio pero con el asfalto menos engomado.</button>
-                            <button class = "opcion2">Sacar a ${piloto1} despues del minuto 5, con más trafico pero con mayor adherencia.</button>`;
+                            <div class="container">
+                        <div class="btn2">
+                            <span class="opcion1">Sacar a ${piloto1}, primero, con pista y aire limpio pero con el asfalto menos engomado.</span>
+                            <div class="dot2"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                    <div class="btn2">
+                        <span class="opcion2">Sacar a ${piloto1} despues del minuto 5, con más trafico pero con mayor adherencia.</span>
+                        <div class="dot2"></div>
+                    </div>
+                </div>`;
             const botonOpcion1 = document.querySelector(".opcion1");
             const botonOpcion2 = document.querySelector(".opcion2");
 
@@ -344,8 +371,18 @@ function mostrarSiguienteContenido() {
 function eleccionNeumaticos() {
     textosElement.innerHTML =
         `<p>Para la Q3 se utilizaron neumáticos intermedios nuevos. ¿Deseas continuar con esos o cambiar?</p>
-        <button class="opcion3">Continuar con neumáticos intermedios.</button>
-        <button class="opcion4">Cambiar a compuesto blando.</button>`
+        <div class="container">
+                        <div class="btn2">
+                            <span class="opcion3">Continuar con neumáticos intermedios.</span>
+                            <div class="dot2"></div>
+                        </div>
+                    </div>
+                    <div class="container">
+                    <div class="btn2">
+                        <span class="opcion4">Cambiar a compuesto blando.</span>
+                        <div class="dot2"></div>
+                    </div>
+                </div>`
         ;
 
     const botonOpcion3 = document.querySelector(".opcion3");
@@ -438,8 +475,18 @@ function funcionBotonSiguiente6() {
     event.preventDefault();
     textosElement.innerHTML =
         `<p>¿Qué deseas hacer?</p>
-        <button class="opcion5">Hacer caso al piloto y poner compuesto para mucha lluvia (full wet).</button>
-        <button class="opcion6">Seguir tu instinto y utilizar neumáticos intermedios para lluvia (inter wet).</button>`
+        <div class="container">
+        <div class="btn2">
+            <span class="opcion5">Hacer caso al piloto y poner compuesto para mucha lluvia (full wet).</span>
+            <div class="dot2"></div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="btn2">
+        <span class="opcion6">Seguir tu instinto y utilizar neumáticos intermedios para lluvia (inter wet).</span>
+        <div class="dot2"></div>
+    </div>
+</div>`
         ;
 
     const botonOpcion5 = document.querySelector(".opcion5");
@@ -457,6 +504,7 @@ function funcionBotonSiguiente6() {
 }
 function funcionBotonOpcion5() {
     event.preventDefault();
+    imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/sainz-frustrado.png" alt="imagen de Carlos Sainz ligeramente frustrado">`
     textosElement.innerHTML = `
         <p>${Sainz.nombre} entra a boxes y le colocan neumáticos full wet</p>
         <p>Decides escuchar a tu piloto. Luego de dos curvas, notas que ${piloto1} está batallando para que el auto no derrape. No tiene adherencia, ni estabilidad a pesar de que la lluvia empezó a ser más fuerte.</p>
@@ -479,6 +527,7 @@ function funcionBotonOpcion5() {
 
 function funcionBotonOpcion6() {
     event.preventDefault();
+    imagenes.innerHTML = `            <img class = "imagen-dialogos" src="./assets/images/sainz-festejo.png" alt="imagen de Carlos Sainz festejando">`
     textosElement.innerHTML = `
         <p>${Sainz.nombre} entra a boxes y le colocan neumáticos inter wet.</p>
         <p>${Sainz.nombre} no protesta y respeta tu decisión como ingeniero. Sale a la pista con la lluvia incipiente, tiene una primer vuelta de calentamiento y abre la vuelta rápida, el clima lo acompaña, sigue moderada.</p>
@@ -504,7 +553,8 @@ function funcionBotonSiguiente7() {
     const textosElement = document.querySelector(".textos");
     const final = finalPromedio(q1, q2, q3);
 
-    if (final >= 3) { // BUENO
+    if (final >= 5) { // BUENO
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/vasseur-conforme.png" alt="imagen de Fred Vasseur con una sonrisa">`;
         textosElement.innerHTML = `<p>${Sainz.directorEscuderiaNombre} ${Sainz.directorEscuderiaApellido} se te acerca con una sonrisa y abraza alegremente junto a ${Sainz.nombre}. Sabe que mañana será un día con muchas expectativas. Y lo conseguiste todo en un solo día, ${usuarioNombre} ${usuarioApellido}.</p>
         <div class="container">
         <div class="btn">
@@ -513,6 +563,7 @@ function funcionBotonSiguiente7() {
         </div>
     </div>`;
     } else { // MALO
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/vasseur-frustrado.png" alt="imagen de Fred Vasseur muy serio">`
         textosElement.innerHTML = `<p>Sabes que estar trabajando para ${Sainz.nombreEscuderia} es una gran responsabilidad. ${Sainz.nombre} se baja del auto bastante frustrado, lo deja saber por las expresiones en su cara. ${Sainz.directorEscuderiaNombre} ${Sainz.directorEscuderiaApellido} sigue sentado en su silla frente a su monitor, te dirige una mirada pensativa. Te hace dudar de si estas a la altura de este desafío.</p>
         <div class="container">
         <div class="btn">
@@ -595,8 +646,19 @@ function mostrarSiguienteContenidoMV() {
 function eleccionNeumaticosMV() {
     textosElement.innerHTML =
         `<p>Para la Q3 se utilizaron neumáticos intermedios nuevos. ¿Deseas continuar con esos o cambiar?</p>
-        <button class="opcion3">Continuar con neumáticos intermedios.</button>
-        <button class="opcion4">Cambiar a compuesto blando.</button>`
+        <div class="container">
+        <div class="btn2">
+            <span class="opcion3">Continuar con neumáticos intermedios.</span>
+            <div class="dot2"></div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="btn2">
+        <span class="opcion4">Cambiar a compuesto blando.</span>
+        <div class="dot2"></div>
+    </div>
+</div>
+`
         ;
 
     const botonOpcion3 = document.querySelector(".opcion3");
@@ -689,8 +751,18 @@ function funcionBotonSiguiente6MV() {
     event.preventDefault();
     textosElement.innerHTML =
         `<p>¿Qué deseas hacer?</p>
-        <button class="opcion5">Hacer caso al piloto y poner compuesto para mucha lluvia (full wet).</button>
-        <button class="opcion6">Seguir tu instinto y utilizar neumáticos intermedios para lluvia (inter wet).</button>`
+        <div class="container">
+        <div class="btn2">
+            <span class="opcion5">Hacer caso al piloto y poner compuesto para mucha lluvia (full wet).</span>
+            <div class="dot2"></div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="btn2">
+        <span class="opcion6">Seguir tu instinto y utilizar neumáticos intermedios para lluvia (inter wet).</span>
+        <div class="dot2"></div>
+    </div>
+</div>`
         ;
 
     const botonOpcion5 = document.querySelector(".opcion5");
@@ -708,6 +780,7 @@ function funcionBotonSiguiente6MV() {
 }
 function funcionBotonOpcion5MV() {
     event.preventDefault();
+    imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/verstappen-frustrado.png" alt="imagen de Max Verstappen ligeramente frustrado.">`
     textosElement.innerHTML = `
         <p>${Verstappen.nombre} entra a boxes y le colocan neumáticos full wet</p>
         <p>Decides escuchar a tu piloto. Luego de dos curvas, notas que ${piloto1} está batallando para que el auto no derrape. No tiene adherencia, ni estabilidad a pesar de que la lluvia empezó a ser más fuerte.</p>
@@ -730,6 +803,7 @@ function funcionBotonOpcion5MV() {
 
 function funcionBotonOpcion6MV() {
     event.preventDefault();
+    imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/verstappen-festejo.png" alt="imagen de Max Verstappen festejando.">`;
     textosElement.innerHTML = `
         <p>${Verstappen.nombre} entra a boxes y le colocan neumáticos inter wet.</p>
         <p>${Verstappen.nombre} no protesta y respeta tu decisión como ingeniero. Sale a la pista con la lluvia incipiente, tiene una primer vuelta de calentamiento y abre la vuelta rápida, el clima lo acompaña, sigue moderada.</p>
@@ -756,7 +830,8 @@ function funcionBotonSiguiente7MV() {
     const textosElement = document.querySelector(".textos");
     const final = finalPromedio(q1, q2, q3);
 
-    if (final >= 3) { // BUENO
+    if (final >= 5) { // BUENO
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/horner-conforme.png" alt="imagen de Christian Horner con una sonrisa.">`
         textosElement.innerHTML = `<p>${Verstappen.directorEscuderiaNombre} ${Verstappen.directorEscuderiaApellido} se te acerca con una sonrisa y abraza alegremente junto a ${Verstappen.nombre}. Sabe que mañana será un día con muchas expectativas. Y lo conseguiste todo en un solo día, ${Verstappen} ${usuarioApellido}.</p>
         <div class="container">
         <div class="btn">
@@ -765,6 +840,7 @@ function funcionBotonSiguiente7MV() {
         </div>
     </div>`;
     } else { // MALO
+        imagenes.innerHTML = `<img class = "imagen-dialogos" src="./assets/images/horner-frustrado.png" alt="imagen de Christian Horner muy serio.">`
         textosElement.innerHTML = `<p>Sabes que estar trabajando para ${Verstappen.nombreEscuderia} es una gran responsabilidad. ${Verstappen.nombre} se baja del auto bastante frustrado, lo deja saber por las expresiones en su cara. ${Verstappen.directorEscuderiaNombre} ${Verstappen.directorEscuderiaApellido} sigue sentado en su silla frente a su monitor, te dirige una mirada pensativa. Te hace dudar de si estas a la altura de este desafío.</p>
         <div class="container">
         <div class="btn">

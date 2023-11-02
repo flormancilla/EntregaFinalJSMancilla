@@ -84,14 +84,17 @@ article {
     grid-area: "container-imagenes";
     width: 70vw;
     height: 20vw;
+    background-image: url(../assets/images/suzuka-circuito-aereo.jpg);
+    background-size: 70vw;
+    background-position: bottom;
 }
 
-.img-fondo {
-    width: 100%;
+.imagen-dialogos {
+    object-fit: cover;
+    width: auto;
     height: 100%;
-    display: block;
+    float: right;
 }
-
 .containerTextos {
     display: grid;
     grid-area: "containerTextos";
@@ -230,10 +233,10 @@ height: auto;
     }
 }
 
-/*BOTONES SIGUIENTE Y*/
+/*BOTONES SIGUIENTE */
 :root {
     --bg: #3C465C;
-    --primary: #78FFCD;
+    --primary: #6667AB;
     --solid: #fff;
     --btn-w: 10em;
     --dot-w: calc(var(--btn-w)*.2);
@@ -258,7 +261,8 @@ height: auto;
     border-radius: 5em;
     text-transform: uppercase;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 16px;
+    background-color: #E5E5E5;
     line-height: 2em;
     cursor: pointer;
 }
@@ -290,6 +294,84 @@ height: auto;
 
 .btn:hover .dot,
 .btn:focus .dot {
+    animation: atom 2s infinite linear;
+    display: block;
+}
+
+@keyframes atom {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+
+    30% {
+        transform: translateX(var(--tr-X)) rotate(0);
+    }
+
+    50% {
+        transform: translateX(var(--tr-X)) rotate(180deg);
+    }
+
+    80% {
+        transform: translateX(0) rotate(180deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(360deg);
+    }
+}
+
+/*BOTONES OPCIONES*/
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.btn2 {
+    position: relative;
+    margin: 0 auto;
+    width: auto;
+    color: #E9435E;
+    border: .15em solid #E9435E;
+    border-radius: 5em;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 16px;
+    background-color: #E5E5E5;
+    line-height: 2em;
+    cursor: pointer;
+}
+
+.dot2 {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: var(--dot-w);
+    height: 100%;
+    border-radius: 100%;
+    transition: all 300ms ease;
+    display: none;
+}
+
+.dot2:after {
+    content: '';
+    position: absolute;
+    left: calc(50% - .4em);
+    top: -.4em;
+    height: .8em;
+    width: .8em;
+    background: #E9435E;
+    border-radius: 1em;
+    border: .25em solid var(--solid);
+    box-shadow: 0 0 .7em var(--solid),
+        0 0 2em #E9435E;
+}
+
+.btn2:hover .dot2,
+.btn2:focus .dot2 {
     animation: atom 2s infinite linear;
     display: block;
 }
