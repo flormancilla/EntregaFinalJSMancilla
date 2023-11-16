@@ -87,37 +87,44 @@ function activarDarkMode() {
 //--------------------------------------------------------------------------------------------
 
 const usuarioNombreInput = document.querySelector(".input-nombre");
-const usuarioNombre = usuarioNombreInput.value;
 const textosElement = document.querySelector(".textos");
 const imagenes = document.querySelector(".container-imagenes");
 let usuarioApellido = "";
 let piloto1 = " ";
 let piloto2 = " ";
 
-
 usuarioNombreInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         const usuarioNombre = usuarioNombreInput.value;
-        //console.log(usuarioNombre);
 
+        if (usuarioNombre === "") {
+            alert("Por favor ingrese un nombre.");
+            return;
+        } else {
+            usuarioNombreInput.remove();
 
-        textosElement.innerHTML = `
-            <h2 class="textos">Ahora indíqueme su/s Apellido/s.</h2>
-            <input class="input-apellido" type="text" name="Apellido" placeholder="Presione ENTER">
-        `;
+            textosElement.innerHTML = `
+                <h2 class="textos">Ahora indíqueme su/s Apellido/s.</h2>
+                <input class="input-apellido" type="text" name="Apellido" placeholder="Presione ENTER">
+            `;
+        }
+    }
+});
 
-        usuarioNombreInput.remove();
-        const usuarioApellidoInput = document.querySelector(".input-apellido");
+const usuarioApellidoInput = document.querySelector(".input-apellido");
 
-        usuarioApellidoInput.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                const usuarioApellido = usuarioApellidoInput.value;
-                console.log(usuarioApellido);
-                usuarioApellidoInput.remove();
+usuarioApellidoInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        const usuarioApellido = usuarioApellidoInput.value;
+        usuarioApellidoInput.remove();
 
-                textosElement.innerHTML = `
+        if (usuarioApellido === "") {
+            alert("Por favor ingrese un apellido.");
+            return;
+        } else {
+            textosElement.innerHTML = `
                     <p>Su tarjeta de acceso ha sido emitida ${usuarioNombre} ${usuarioApellido}.</p>
                     <div class="container">
                     <div class="btn">
@@ -126,13 +133,12 @@ usuarioNombreInput.addEventListener("keypress", function (event) {
                     </div>
                 </div>`;
 
-                const botonSiguiente = document.querySelector(".boton-siguiente");
-                botonSiguiente.addEventListener("click", function () {
-                    event.preventDefault();
-                    mostrarPilotoOptions(usuarioNombre, usuarioApellido);
-                });
-            }
-        });
+            const botonSiguiente = document.querySelector(".boton-siguiente");
+            botonSiguiente.addEventListener("click", function () {
+                event.preventDefault();
+                mostrarPilotoOptions(usuarioNombre, usuarioApellido);
+            });
+        }
     }
 });
 
