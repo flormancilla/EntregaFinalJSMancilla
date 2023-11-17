@@ -33,12 +33,12 @@ const Verstappen = {
 
 const pilotos = [Sainz, Verstappen];
 
-/*for (const piloto of pilotos) {
+for (const piloto of pilotos) {
     for (const propiedad in piloto) {
         console.log(`${propiedad}: ${piloto[propiedad]}`);
     }
     console.log('------------------');
-}*/
+}
 
 console.log()
 
@@ -47,14 +47,16 @@ const colorModeButton = document.querySelector(".boton-modo-pantalla");
 const body = document.querySelector("body");
 const textos = document.querySelector(".containerTextos");
 
+function activarDarkMode() {
+    body.classList.add("dark-mode");
+    textos.classList.add("textosDarkMode");
+}
 
 let darkMode = localStorage.getItem("dark-mode");
 
 if (darkMode === "activado") {
     activarDarkMode();
 }
-
-colorModeButton.addEventListener("click", cambiarModoColor);
 
 function cambiarModoColor() {
     body.classList.toggle("dark-mode");
@@ -79,10 +81,7 @@ function cambiarModoColor() {
     }
 }
 
-function activarDarkMode() {
-    body.classList.add("dark-mode");
-    textos.classList.add("textosDarkMode");
-}
+colorModeButton.addEventListener("click", cambiarModoColor);
 
 //--------------------------------------------------------------------------------------------
 
@@ -175,13 +174,13 @@ function mostrarPilotoOptions(usuarioNombre, usuarioApellido) {
             destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: false,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
             style: {
                 background: "linear-gradient(to right, #FF0000, #F9DB2D)",
             },
-            onClick: function () { } // Callback after click
+            onClick: function () { }
         }).showToast();
     })
 
@@ -197,13 +196,13 @@ function mostrarPilotoOptions(usuarioNombre, usuarioApellido) {
             destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
             close: false,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
             style: {
                 background: "linear-gradient(to right, #1967D2, #F9DB2D)",
             },
-            onClick: function () { } // Callback after click
+            onClick: function () { }
         }).showToast();
     })
 }
